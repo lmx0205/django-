@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/static/manager/assets/css/bootstrap.css">
+    <title>xx图书馆</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            box-sizing: content-box;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 720px;
+            position: relative;
+            background: url(/static/manager/assets/img/bg2.jpg) no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .list-group {
+            position: absolute;
+            left: 40%;
+            top: 200px;
+            width: 200px;
+            text-align: center;
+        }
+
+        .list-group a {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="list-group">
+        <a href="http://localhost:8000/system/query/" class="list-group-item list-group-item-action active">图书查询</a>
+        <a href="http://localhost:8000/system/return/" class="list-group-item list-group-item-action active">图书归还</a>
+        <a href="http://localhost:8000/system/info/" class="list-group-item list-group-item-action active">个人信息</a>
+        <a href="http://localhost:8000/system/logout/" class="list-group-item list-group-item-action active">注销</a>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta class="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dream</title>
+    <link href="/static/manager/assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="/static/manager/assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="/static/manager/assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <link href="/static/manager/assets/css/custom-styles.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <!-- <link rel="stylesheet" href="/static/manager/assets/css/del.css"> -->
+    <style>
+        #page-wrapper ul li {
+            height: 38px;
+            line-height: 38px;
+            width: 200px;
+            border: 1px solid #000000;
+            padding-left: 20px;
+        }
+
+        #page-wrapper ul li span {
+            display: inline-block;
+            margin-left: 30px;
+            border-left: 1px solid #000000;
+            padding-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <a href="http://localhost:8000/manager/index/" class="navbar-brand">xx图书馆</a>
+            </div>
+            <button type="button" class="btn btn-light"><a
+                    href="http://localhost:8000/manager/logout/">退出系统</a></button>
+        </nav>
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+
+                    <li>
+                        <a href="#">图书管理<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="http://localhost:8000/manager/inqbook/">查询图书信息</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/addbook/">添加图书信息</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/edit/">修改图书信息</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/delbook/">删除图书信息</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/addstyle/">添加图书类别</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">学生管理<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="http://localhost:8000/manager/inqstudent/">查询学生信息</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/addstudent/">添加学生信息</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/editstudent/">修改学生信息</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/delstudent/">删除学生信息</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">借阅管理<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="http://localhost:8000/manager/borrowBook/">图书借阅</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/returnBook/">图书归还</a>
+                            </li>
+                            >
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">管理员管理<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="http://localhost:8000/manager/addmanager/">添加管理员</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/delmanager/">删除管理员</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="page-wrapper">
+            <ul>
+                <li>学号<span class="studentId">{{student.studentId}}</span></li>
+                <li>密码<span>{{student.password}}</span></li>
+                <li>姓名<span>{{student.name}}</span></li>
+                <li>性别<span>{{student.gender}}</span></li>
+                <li>学院<span>{{student.college}}</span></li>
+                <li>班级<span>{{student.Class}}</span></li>
+                <li>在借册数<span style="margin-left: 44px;">{{student.borrowNum}}</span></li>
+                <li>可借阅次数<span>{{student.allowNum}}</span></li>
+            </ul>
+            <button id="confirm" class="btn btn-info btn-clean-one">确定删除</button>
+        </div>
+    </div>
+    <script src="/static/manager/assets/js/jquery-1.10.2.js"></script>
+    <script src="/static/manager/assets/js/bootstrap.min.js"></script>
+    <script src="/static/manager/assets/js/jquery.metisMenu.js"></script>
+    <script src="/static/manager/assets/js/custom-scripts.js"></script>
+    <script>
+        var confirm = document.querySelector('#confirm')
+        var studentId = document.querySelector('.studentId')
+        var studentId = studentId.innerHTML
+        // console.log(studentId)
+        confirm.onclick = function () {
+            $.ajax({
+                type: "GET",
+                xhrFields: {
+                    withCredentials: true
+                },
+                data: {
+                    studentId: studentId,
+                },
+                url: "http://localhost:8000/manager/isdelstudent/",
+                complete: function (res) {
+                    alert(res.responseText)
+                    window.location.href = "http://localhost:8000/manager/delstudent/"
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>

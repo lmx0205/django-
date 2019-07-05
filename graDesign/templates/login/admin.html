@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>XX图书馆</title>
+    <link rel="stylesheet" href="/static/login/css/login.css">
+
+</head>
+
+<body class="login-bg">
+
+    <div class="login layui-anim layui-anim-up">
+        <div class="message">XX图书馆</div>
+        <div id="darkbannerwrap"></div>
+
+        <form method="POST" class="layui-form">
+            {% csrf_token %}
+            <input name="account" placeholder="账号" type="text" lay-verify="required" class="layui-input" />
+            <hr class="hr15" />
+            <input name="password" lay-verify="required" placeholder="密码" type="password" class="layui-input" />
+            <hr class="hr15" />
+            <button class="layui-btn" style="width:100%;height: 48px;line-height: 48px;font-size: 16px" type="submit">
+                管理员登陆</button>
+            <hr class="hr20" />
+        </form>
+        <button class="layui-btn layui-btn-primary" id="manager">学生登陆</button>
+    </div>
+    <script>
+        var manager = document.querySelector('#manager')
+        manager.onclick = function () {
+            location.href = 'http://localhost:8000/login/login/'
+        }
+    </script>
+</body>
+
+</html>

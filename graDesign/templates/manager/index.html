@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dream</title>
+    <link href="/static/manager/assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="/static/manager/assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="/static/manager/assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <link href="/static/manager/assets/css/custom-styles.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" type="text/css" href="/static/manager/assets/css/index.css" />
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <a href="http://localhost:8000/manager/index/" class="navbar-brand">xx图书馆</a>
+            </div>
+            <button type="button" class="btn btn-light"><a
+                    href="http://localhost:8000/manager/logout/">退出系统</a></button>
+        </nav>
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+
+                    <li>
+                        <a href="#">图书管理<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="http://localhost:8000/manager/inqbook/">查询图书信息</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/addbook/">添加图书信息</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/edit/">修改图书信息</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/delbook/">删除图书信息</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/addstyle/">添加图书类别</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">学生管理<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="http://localhost:8000/manager/inqstudent/">查询学生信息</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/addstudent/">添加学生信息</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/editstudent/">修改学生信息</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/delstudent/">删除学生信息</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">借阅管理<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="http://localhost:8000/manager/borrowBook/">图书借阅</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/returnBook/">图书归还</a>
+                            </li>
+                            >
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">管理员管理<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="http://localhost:8000/manager/addmanager/">添加管理员</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/delmanager/">删除管理员</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="page-wrapper">
+            <span>欢迎登陆xx图书管理系统</span>
+        </div>
+    </div>
+    <script src="/static/manager/assets/js/jquery-1.10.2.js"></script>
+    <script src="/static/manager/assets/js/bootstrap.min.js"></script>
+    <script src="/static/manager/assets/js/jquery.metisMenu.js"></script>
+    <script src="/static/manager/assets/js/custom-scripts.js"></script>
+</body>
+
+</html>

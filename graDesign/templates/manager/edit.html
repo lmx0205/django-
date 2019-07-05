@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta class="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dream</title>
+    <link href="/static/manager/assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="/static/manager/assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="/static/manager/assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <link href="/static/manager/assets/css/custom-styles.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <a href="http://localhost:8000/manager/index/" class="navbar-brand">xx图书馆</a>
+            </div>
+            <button type="button" class="btn btn-light"><a
+                    href="http://localhost:8000/manager/logout/">退出系统</a></button>
+        </nav>
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+
+                    <li>
+                        <a href="#">图书管理<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="http://localhost:8000/manager/inqbook/">查询图书信息</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/addbook/">添加图书信息</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/edit/">修改图书信息</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/delbook/">删除图书信息</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/addstyle/">添加图书类别</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">学生管理<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="http://localhost:8000/manager/inqstudent/">查询学生信息</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/addstudent/">添加学生信息</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/editstudent/">修改学生信息</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/delstudent/">删除学生信息</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">借阅管理<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="http://localhost:8000/manager/borrowBook/">图书借阅</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/returnBook/">图书归还</a>
+                            </li>
+                            >
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">管理员管理<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="http://localhost:8000/manager/addmanager/">添加管理员</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/delmanager/">删除管理员</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="page-wrapper">
+            <ul>
+                <li style="visibility: hidden;">图书编号<input type="text" class="number" id="" value="{{book.number}}" />
+                </li>
+                <li>图书名称<input type="text" class="name1" id="" value="{{book.name}}" /></li>
+                <li>图书作者<input type="text" class="author" id="" value="{{book.author}}" /></li>
+                <li>图书类型
+                    <select id="select1" class="types" data-types="{{types}}">
+                        {% for item in style %}
+                        <option>{{item}}</option>
+                        {% endfor %}
+                    </select>
+                </li>
+                <li>图书价格<input type="text" class="price" id="" value="{{book.price}}" /></li>
+                <li>图书数量<input type="text" class="stock" id="" value="{{book.stock}}" /></li>
+                <li>出版社 <input class="chuban" type="text" id="" value="{{book.press}}" /></li>
+                <li>存放位置<input type="text" class="place" id="" value="{{book.place}}" /></li>
+                <li>被借次数<input type="text" class="borrowedNum" id="" value="{{book.borrowedNum}}" /></li>
+            </ul>
+            <button id="confirm" class="btn btn-info btn-clean-one">确定修改</button>
+        </div>
+    </div>
+    <script src="/static/manager/assets/js/jquery-1.10.2.js"></script>
+    <script src="/static/manager/assets/js/bootstrap.min.js"></script>
+    <script src="/static/manager/assets/js/jquery.metisMenu.js"></script>
+    <script src="/static/manager/assets/js/custom-scripts.js"></script>
+    <script>
+        var confirm = document.querySelector('#confirm')
+        var Select = document.querySelector('#select1')
+        var types1 = Select.dataset.types
+        var number = document.querySelector('.number')
+        var name1 = document.querySelector('.name1')
+        var author = document.querySelector('.author')
+        var myselect = document.getElementById("select1");
+        var index = myselect.selectedIndex;
+        var types = myselect.options[index].text;
+        var price = document.querySelector('.price')
+        var press = document.querySelector('.chuban')
+        var place = document.querySelector('.place')
+        var borrowedNum = document.querySelector('.borrowedNum')
+        var stock = document.querySelector('.stock')
+
+        //select的值为后台传回的值
+        function jsSelectItemByValue(objSelect, objItemText) {
+            //判断是否存在 
+            var isExit = false;
+            for (var i = 0; i < objSelect.options.length; i++) {
+                if (objSelect.options[i].text == objItemText) {
+                    objSelect.options[i].selected = true;
+                    isExit = true;
+                    break;
+                }
+            }
+        }
+        jsSelectItemByValue(Select, types1)
+
+        confirm.onclick = function () {
+            console.log(name1.value)
+            $.ajax({
+                type: "GET",
+                xhrFields: {
+                    withCredentials: true
+                },
+                data: {
+                    number: number.value,
+                    name: name1.value,
+                    author: author.value,
+                    types: types,
+                    price: price.value,
+                    press: press.value,
+                    place: place.value,
+                    borrowedNum: borrowedNum.value,
+                    stock: stock.value,
+                },
+                url: "http://localhost:8000/manager/isedit/",
+                complete: function (res) {
+                    alert(res.responseText)
+                    window.location.href = "http://localhost:8000/manager/edit/"
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>

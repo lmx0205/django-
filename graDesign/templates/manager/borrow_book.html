@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dream</title>
+    <link href="/static/manager/assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="/static/manager/assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="/static/manager/assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <link href="/static/manager/assets/css/custom-styles.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <style>
+        .form-control {
+            width: 300px !important;
+            margin-top: 20px;
+        }
+
+        #page-wrapper button {
+            margin-left: 0px;
+            margin-top: 20px;
+        }
+
+        .alert1 {
+            position: relative;
+            width: 250px;
+            height: 150px;
+            left: 100px;
+            background: rgba(0, 0, 0, 0.2);
+            opacity: 1;
+        }
+
+        .haode {
+            width: 240px;
+            height: 140px;
+            background: white;
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            border-radius: 3px;
+            box-shadow: 0 20px 60px -2px rgba(27, 33, 58, 0.4);
+        }
+
+        .qqa1 {
+            display: block;
+            color: #666d71;
+            text-align: center;
+        }
+
+        .qqa2 {
+            display: block;
+            padding-left: 15px;
+            padding-top: 10px;
+        }
+
+        .qqq {
+            display: flex;
+            margin-top: 16px;
+            border-top: 1px solid #eee;
+        }
+
+        .qqa3 {
+            display: block;
+            width: 50%;
+            height: 43px;
+            text-align: center;
+            line-height: 43px;
+            border-right: 1px solid #eee;
+        }
+
+        .qqa4 {
+            display: block;
+            width: 50%;
+            height: 43px;
+            text-align: center;
+            line-height: 43px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <a href="http://localhost:8000/manager/index/" class="navbar-brand">xx图书馆</a>
+            </div>
+            <button type="button" class="btn btn-light"><a
+                    href="http://localhost:8000/manager/logout/">退出系统</a></button>
+        </nav>
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+
+                    <li>
+                        <a href="#">图书管理<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="http://localhost:8000/manager/inqbook/">查询图书信息</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/addbook/">添加图书信息</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/edit/">修改图书信息</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/delbook/">删除图书信息</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/addstyle/">添加图书类别</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">学生管理<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="http://localhost:8000/manager/inqstudent/">查询学生信息</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/addstudent/">添加学生信息</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/editstudent/">修改学生信息</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/delstudent/">删除学生信息</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">借阅管理<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="http://localhost:8000/manager/borrowBook/">图书借阅</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/returnBook/">图书归还</a>
+                            </li>
+                            >
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">管理员管理<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="http://localhost:8000/manager/addmanager/">添加管理员</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8000/manager/delmanager/">删除管理员</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="page-wrapper">
+            <input class="form-control mr-sm-2 studentId" type="text" placeholder="请输入借书人学号" aria-label="Search">
+            <input class="form-control mr-sm-2 number" type="text" placeholder="请输入图书编号" aria-label="Search">
+            <button class="btn btn-light" id="borrow">确认借书</button>
+            <div class='alert1' style="display: none">
+                <div class="haode">
+                    <h4 class="qqa1">借书确认</h4>
+                    <span class="qqa2">你确定要借阅这本书吗</span>
+                    <div class="qqq">
+                        <span class="qqa3">确定</span>
+                        <span class="qqa4">取消</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/manager/assets/js/jquery-1.10.2.js"></script>
+    <script src="/static/manager/assets/js/bootstrap.min.js"></script>
+    <script src="/static/manager/assets/js/jquery.metisMenu.js"></script>
+    <script src="/static/manager/assets/js/custom-scripts.js"></script>
+    <script>
+        var getId = document.querySelector('#borrow')
+        var alert1 = document.querySelector('.alert1')
+        var delSure = document.querySelector('.qqa3')
+        var queren = document.querySelector('.qqa4')
+        var studentId = document.querySelector('.studentId')
+        var number = document.querySelector('.number')
+
+        getId.onclick = function () {
+            alert1.style.display = "block";
+            delSure.onclick = function () {
+                $.ajax({
+                    type: "GET",
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    data: {
+                        studentId: studentId.value,
+                        number: number.value,
+                    },
+                    url: "http://localhost:8000/manager/isborrowBook/",
+                    complete: function (res) {
+                        alert(res.responseText)
+                        window.location.href = "http://localhost:8000/manager/borrowBook/"
+                    }
+                })
+                alert1.style.display = "none";
+
+            }
+            queren.onclick = function () {
+                alert1.style.display = "none";
+            }
+        }
+    </script>
+</body>
+
+</html>

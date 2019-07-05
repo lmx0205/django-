@@ -1,0 +1,13 @@
+#page-wrapper{
+background: url(../img/bg.jpg) no-repeat;
+background-size: 100% 110%;
+}
+#page-wrapper span{
+	position: relative;
+	left: 30px;
+	top: 100px;
+	font-family: "宋体";
+	font-size: 50px;
+	font-weight: 500;
+	color: white;
+}

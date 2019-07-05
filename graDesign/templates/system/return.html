@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>xx图书馆</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/system/css/bootstrap.css">
+    <style>
+        table {
+            width: 1150px !important;
+            margin-top: 50px;
+            margin-left: 150px;
+            text-align: center;
+        }
+
+        .alert1 {
+            position: relative;
+            width: 250px;
+            height: 150px;
+            left: 600px;
+            background: rgba(0, 0, 0, 0.2);
+            opacity: 1;
+        }
+
+        .haode {
+            width: 240px;
+            height: 140px;
+            background: white;
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            border-radius: 3px;
+            box-shadow: 0 20px 60px -2px rgba(27, 33, 58, 0.4);
+        }
+
+        .qqa1 {
+            display: block;
+            color: #666d71;
+            text-align: center;
+        }
+
+        .qqa2 {
+            display: block;
+            padding-left: 15px;
+            padding-top: 10px;
+        }
+
+        .qqq {
+            display: flex;
+            margin-top: 25px;
+            border-top: 1px solid #eee;
+        }
+
+        .qqa3 {
+            display: block;
+            width: 50%;
+            height: 43px;
+            text-align: center;
+            line-height: 43px;
+            border-right: 1px solid #eee;
+        }
+
+        .qqa4 {
+            display: block;
+            width: 50%;
+            height: 43px;
+            text-align: center;
+            line-height: 43px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark">
+        <a class="navbar-brand" href="http://localhost:8000/system/index/">首页</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="http://localhost:8000/system/query/">图书查询<span
+                        class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="http://localhost:8000/system/return/">图书归还</a>
+                <a class="nav-item nav-link" href="http://localhost:8000/system/info/">个人信息</a>
+                <a class="nav-item nav-link" href="http://localhost:8000/system/logout/">注销</a>
+            </div>
+        </div>
+    </nav>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">编号</th>
+                <th scope="col">书名</th>
+                <th scope="col">作者</th>
+                <th scope="col">借书时间</th>
+                <th scope="col">还书</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in bookList %}
+            <tr>
+                <th scope="row">{{book.number}}</th>
+                <td>{{book.name}}</td>
+                <td>{{book.author}}</td>
+                <td>{{book.borrowTime}}</td>
+                <td><button data-id="{{book.id}}" class="btn btn-light">点击还书</button></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class='alert1' style="display: none">
+        <div class="haode">
+            <h4 class="qqa1">还书确认</h4>
+            <span class="qqa2">你确定要还这本书吗</span>
+            <div class="qqq">
+                <span class="qqa3">确定</span>
+                <span class="qqa4">取消</span>
+            </div>
+        </div>
+    </div>
+    <script src="/static/manager/assets/js/jquery-1.10.2.js"></script>
+    <script>
+        var getId = document.querySelectorAll('.btn-light')
+        var alert1 = document.querySelector('.alert1')
+        var delSure = document.querySelector('.qqa3')
+        var queren = document.querySelector('.qqa4')
+        // console.log(getId)
+        for (var i = 0; i < getId.length; i++) {
+            getId[i].onclick = function (i) {
+                // console.log(this.dataset.id)
+                var id = this.dataset.id;
+                alert1.style.display = "block";
+                delSure.onclick = function (i) {
+                    console.log(id)
+                    $.ajax({
+                        type: "GET",
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        data: {
+                            id: id
+                        },
+                        url: "http://localhost:8000/system/ReturnBook/",
+                        complete: function (res) {
+                            alert(res.responseText)
+                            window.location.href = "http://localhost:8000/system/return/"
+                        }
+                    })
+                    alert1.style.display = "none";
+
+                }
+                queren.onclick = function () {
+                    alert1.style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

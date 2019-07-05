@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/system/css/bootstrap.css">
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            box-sizing: content-box;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 720px;
+            position: relative;
+        }
+
+        .list-group {
+            position: absolute;
+            left: 8%;
+            top: 160px;
+            width: 250px;
+        }
+
+        .return {
+            margin-top: 20px;
+            position: relative;
+            left: 450px;
+            width: 800px;
+            max-height: 300px;
+            overflow: scroll;
+            text-align: center;
+        }
+
+        .return table {
+            width: 800px !important;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark">
+        <a class="navbar-brand" href="http://localhost:8000/system/index/">首页</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="http://localhost:8000/system/query/">图书查询<span
+                        class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="http://localhost:8000/system/return/">图书归还</a>
+                <a class="nav-item nav-link" href="http://localhost:8000/system/info/">个人信息</a>
+                <a class="nav-item nav-link" href="http://localhost:8000/system/logout/">注销</a>
+            </div>
+        </div>
+    </nav>
+    <ul class="list-group">
+        <li class="list-group-item">学号：{{student.studentId}}</li>
+        <li class="list-group-item">登陆密码：{{student.password}}</li>
+        <li class="list-group-item">姓名：{{student.name}} {{student.gender}}</li>
+        <li class="list-group-item">学院班级：{{student.college}}{{student.Class}}</li>
+        <li class="list-group-item">可借阅次数：{{student.allowNum}}</li>
+        <li class="list-group-item">在借册数:{{student.borrowNum}}</li>
+    </ul>
+    <div class="return">
+        <span>借书表</span>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">编号</th>
+                    <th scope="col">书名</th>
+                    <th scope="col">作者</th>
+                    <th scope="col">借书时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in bookList %}
+                <tr>
+                    <th scope="row">{{book.number}}</th>
+                    <td>{{book.name}}</td>
+                    <td>{{book.author}}</td>
+                    <td>{{book.borrowTime}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="return">
+        <span>还书表</span>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">编号</th>
+                    <th scope="col">书名</th>
+                    <th scope="col">作者</th>
+                    <th scope="col">借书时间</th>
+                    <th scope="col">还书时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in RbookList %}
+                <tr>
+                    <th scope="row">{{book.number}}</th>
+                    <td>{{book.name}}</td>
+                    <td>{{book.author}}</td>
+                    <td>{{book.borrowTime}}</td>
+                    <td>{{book.returnTime}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>
